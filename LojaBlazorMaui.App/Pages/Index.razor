@@ -16,10 +16,11 @@
                     <h6 class="card-title">@item.Name</h6>
                     <p class="card-text">@string.Format("{0:c}", item.Price)</p>
                     <div class="d-grid">
-                        <a href="#" class="btn btn-primary">
+                        <button class="btn btn-primary" @onclick="(() => SelecionarProduto(item))"
+                                data-bs-toggle="modal" data-bs-target="#dadosProduto">
                             <i class="fa-solid fa-cart-shopping"></i>
                             Comprar
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -27,6 +28,40 @@
     }
 </div>
 
+@* Janela modal para exibição dos dados do produto *@
+<div class="modal fade" id="dadosProduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title text-primary fs-5" id="exampleModalLabel">
+                    <i class="fa-solid fa-cart-shopping"></i> Comprar
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-2">
+                    <div class="col-md-4">
+                        <img src="@produtoSelecionado.PhotoUrl" class="card-img-top" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <h2>@produtoSelecionado.Name</h2>
+                        <h5>@produtoSelecionado.Description</h5>
+                        <h6 class="badge bg-secondary">@produtoSelecionado.Category</h6>
+                        <h3>@string.Format("{0:c}", produtoSelecionado.Price)</h3>
+                        <hr />
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                Adicionar ao carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
