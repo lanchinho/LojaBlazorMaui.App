@@ -51,10 +51,10 @@
                         <hr />
                         <div class="text-end">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary">
+                            <NavLink type="button" class="btn btn-primary" @onclick="(() => AdicionarAoCarrinho(produtoSelecionado))">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 Adicionar ao carrinho
-                            </button>
+                            </NavLink>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,8 @@
 using LojaBlazorMaui.Services.Models;
 using LojaBlazorMaui.Services;
+using Microsoft.AspNetCore.Components;
+using LojaBlazorMaui.App.Helpers;
+using LojaBlazorMaui.App.Models;
 
 namespace LojaBlazorMaui.App.Pages
 {
@@ -14,6 +17,12 @@ namespace LojaBlazorMaui.App.Pages
         /// Dados do produto selecionado pelo usuário
         /// </summary>
         private ProdutosGetModel produtoSelecionado = new();
+
+        [Inject]
+        public ShoppingCartHelper ShoppingCartHelper { get; set; }
+
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
 
         /// <summary>
         /// Método executado quando a página é carregada
@@ -31,6 +40,20 @@ namespace LojaBlazorMaui.App.Pages
         protected async Task SelecionarProduto(ProdutosGetModel item)
         {
             produtoSelecionado = item;
+        }
+
+        protected async Task AdicionarAoCarrinho(ProdutosGetModel item)
+        {
+            var shoppingCartItem = new ShoppingCartItemModel
+            {
+                Qtd = 1,
+                Produto = item
+            };
+
+            await ShoppingCartHelper.Add(shoppingCartItem);
+
+            //redirecionar para a página do carrinho de compras
+            NavigationManager.NavigateTo("/shopping-cart", true);
         }
     }
 }

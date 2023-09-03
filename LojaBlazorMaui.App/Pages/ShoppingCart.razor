@@ -1,7 +1,77 @@
 ﻿@page "/shopping-cart"
 
-<h3>ShoppingCart</h3>
+<ol class="breadcrumb mb-4 mt-3">
+    <li class="breadcrumb-item">
+        <NavLink Match="NavLinkMatch.All" href="">Loja de produtos</NavLink>
+    </li>
+    <li class="breadcrumb-item active">Carrinho de compras</li>
+</ol>
 
-@code {
+@if (ShoppingCartModel != null)
+{
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <h1>Carrinho de compras</h1>
+            <h6>Total: @string.Format("{0:c}", ShoppingCartModel.ValorTotal)</h6>
+        </div>
+        <div class="col-md-6 text-end">
+            <button @onclick="(() => LimparCarrinho())"
+                    class="btn btn-outline-danger btn-sm">
+                Limpar carrinho de compras
+            </button>
+        </div>
+    </div>
 
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th width="200">Operações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ShoppingCartModel.Itens != null)
+                {
+                    foreach (var item in ShoppingCartModel.Itens)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.Produto.PhotoUrl" height="80" width="80" />
+                            </td>
+                            <td>@item.Produto.Name</td>
+                            <td>@string.Format("{0:c}", item.Produto.Price)</td>
+                            <td>@item.Qtd</td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm">+</button>
+                                <button class="btn btn-outline-danger btn-sm">-</button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        Quantidade de itens: @ShoppingCartModel.QtdItens
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 }
+else
+{
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <h1>Carrinho de compras</h1>
+            <h3>Não há itens adicionados no seu carrinho de compras</h3>
+        </div>
+    </div>
+}
+
+
+

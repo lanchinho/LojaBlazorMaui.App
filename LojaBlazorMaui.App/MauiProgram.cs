@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Blazored.LocalStorage;
+using LojaBlazorMaui.App.Helpers;
+using Microsoft.Extensions.Logging;
 
 namespace LojaBlazorMaui.App;
 
@@ -15,9 +17,11 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddMauiBlazorWebView();
+		builder.Services.AddBlazoredLocalStorage();
+		builder.Services.AddTransient<ShoppingCartHelper>();
 
 #if DEBUG
-		builder.Services.AddBlazorWebViewDeveloperTools();
+        builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif	
 
