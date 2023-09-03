@@ -1,0 +1,32 @@
+﻿@page "/"
+
+<ol class="breadcrumb mb-4 mt-3">
+    <li class="breadcrumb-item">
+        <NavLink Match="NavLinkMatch.All" href="">Loja de produtos</NavLink>
+    </li>
+    <li class="breadcrumb-item active">Página inicial</li>
+</ol>
+<div class="row mb-4">
+    @foreach (var item in produtos)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card" style="width: 18rem;">
+                <img src="@item.PhotoUrl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h6 class="card-title">@item.Name</h6>
+                    <p class="card-text">@string.Format("{0:c}", item.Price)</p>
+                    <div class="d-grid">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Comprar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+

@@ -1,0 +1,41 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31611.283
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LojaBlazorMaui.App", "LojaBlazorMaui.App\LojaBlazorMaui.App.csproj", "{88F66264-2476-42DC-847A-57CD73388B9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - UI", "1 - UI", "{C110ADE5-45D8-4508-BC90-855B65C438FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Services", "2 - Services", "{91EA720B-E79F-43A6-903F-86AE47CA1B33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaBlazorMaui.Services", "LojaBlazorMaui.Services\LojaBlazorMaui.Services.csproj", "{228D7D37-BC7D-4C6E-8306-8315242F0406}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88F66264-2476-42DC-847A-57CD73388B9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88F66264-2476-42DC-847A-57CD73388B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88F66264-2476-42DC-847A-57CD73388B9D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{88F66264-2476-42DC-847A-57CD73388B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88F66264-2476-42DC-847A-57CD73388B9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88F66264-2476-42DC-847A-57CD73388B9D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{228D7D37-BC7D-4C6E-8306-8315242F0406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{228D7D37-BC7D-4C6E-8306-8315242F0406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{228D7D37-BC7D-4C6E-8306-8315242F0406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{228D7D37-BC7D-4C6E-8306-8315242F0406}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{88F66264-2476-42DC-847A-57CD73388B9D} = {C110ADE5-45D8-4508-BC90-855B65C438FA}
+		{228D7D37-BC7D-4C6E-8306-8315242F0406} = {91EA720B-E79F-43A6-903F-86AE47CA1B33}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6124C267-AEF0-47B4-95CB-034363DDCD53}
+		        SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+	EndGlobalSection
+EndGlobal
