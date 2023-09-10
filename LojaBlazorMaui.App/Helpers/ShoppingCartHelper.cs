@@ -88,6 +88,29 @@ namespace LojaBlazorMaui.App.Helpers
         }
 
         /// <summary>
+        /// Método para retirar um item do carrinho de compras
+        /// </summary>
+        public async Task RemoveItem(Guid id)
+        {
+            //ler o conteúdo do carrinho de compras
+            var shoppingCart = await _localStorageService.GetItemAsync<ShoppingCartModel>(_key);
+
+            //removendo o item do carrinho
+            shoppingCart.Itens.RemoveAll(i => i.Produto.Id == id);
+
+            if (shoppingCart.QtdItens == 0)
+            {
+                await _localStorageService.RemoveItemAsync(_key);
+            }
+            else
+            {
+                //gravando os dados na local storage
+                await _localStorageService.SetItemAsync(_key, shoppingCart);
+            }
+        }
+
+
+        /// <summary>
         /// Método para limpar todo o conteúdo do carrinho de compras
         /// </summary>        
         public async Task RemoveAll()

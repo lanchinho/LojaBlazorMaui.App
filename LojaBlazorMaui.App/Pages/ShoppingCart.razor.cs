@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using LojaBlazorMaui.App.Helpers;
 using LojaBlazorMaui.App.Models;
-using Microsoft.JSInterop;
 
 namespace LojaBlazorMaui.App.Pages
 {
@@ -10,7 +10,7 @@ namespace LojaBlazorMaui.App.Pages
         [Inject] //injeção de dependência
         public ShoppingCartHelper ShoppingCartHelper { get; set; }
 
-        [Inject] //IoC
+        [Inject] //injeção de dependência
         public IJSRuntime JSRuntime { get; set; }
 
         /// <summary>
@@ -27,23 +27,43 @@ namespace LojaBlazorMaui.App.Pages
             ShoppingCartModel = await ShoppingCartHelper.Get();
         }
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender) //carregando o datatable
+                await JSRuntime.InvokeAsync<object>("TestDataTablesAdd", "#shoppingCartData");
+        }
+
         /// <summary>
         /// Método para adicionar uma unidade de um item do carrinho
-        /// </summary>        
+        /// </summary>
         protected async Task AdicionarUnidade(Guid id)
         {
-            await ShoppingCartHelper.Add(id);
-            //recarrega carrinho, atualizando visualização...
+            await ShoppingCartHelper.Add(id); //adicionando 1 unidade do item
             await OnInitializedAsync();
         }
 
         /// <summary>
-        /// Método para remover uma unidade do carrinho
-        /// </summary>        
+        /// Método para remover uma unidade de um item do carrinho
+        /// </summary>
         protected async Task RemoverUnidade(Guid id)
         {
-            await ShoppingCartHelper.Remove(id);
+            await ShoppingCartHelper.Remove(id); //removendo 1 unidade do item
             await OnInitializedAsync();
+        }
+
+        /// <summary>
+        /// Método para remover um item do carrinho
+        /// </summary>
+        protected async Task RemoverItem(Guid id)
+        {
+            var confirm = await JSRuntime.InvokeAsync<bool>
+                ("confirm", "Deseja realmente excluir este item do seu carrinho de compras?");
+
+            if (confirm)
+            {
+                await ShoppingCartHelper.RemoveItem(id); //removendo 1 item do carrinho
+                await OnInitializedAsync();
+            }
         }
 
         /// <summary>
@@ -51,7 +71,8 @@ namespace LojaBlazorMaui.App.Pages
         /// </summary>
         protected async Task LimparCarrinho()
         {
-            var confirm = await JSRuntime.InvokeAsync<bool>("confirm", "Deseja realmente excluir todos os itens do seu carrinho de compras?");
+            var confirm = await JSRuntime.InvokeAsync<bool>
+                ("confirm", "Deseja realmente excluir todos os itens do seu carrinho de compras?");
 
             if (confirm)
             {
@@ -61,3 +82,5 @@ namespace LojaBlazorMaui.App.Pages
         }
     }
 }
+
+

@@ -11,26 +11,27 @@
 {
     <div class="row mb-2">
         <div class="col-md-6">
-            <h1>Carrinho de compras</h1>
+            <h2>Carrinho de compras</h2>
             <h6>Total: @string.Format("{0:c}", ShoppingCartModel.ValorTotal)</h6>
         </div>
         <div class="col-md-6 text-end">
             <button @onclick="(() => LimparCarrinho())"
                     class="btn btn-outline-danger btn-sm">
+                <i class="fa-solid fa-trash"></i>
                 Limpar carrinho de compras
             </button>
         </div>
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-sm">
+    <div class="table-responsive" onbeforeunload="TestDataTablesRemove('#shoppingCartData')">
+        <table id="shoppingCartData" class="table table-sm">
             <thead>
                 <tr>
                     <th>Foto</th>
                     <th>Nome</th>
                     <th>Preço</th>
                     <th>Quantidade</th>
-                    <th width="200">Operações</th>
+                    <th width="240">Operações</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,12 +43,28 @@
                             <td>
                                 <img src="@item.Produto.PhotoUrl" height="80" width="80" />
                             </td>
-                            <td>@item.Produto.Name</td>
+                            <td width="50%">
+                                <strong>@item.Produto.Name</strong>
+                                <p>
+                                    <small>@item.Produto.Description</small>
+                                </p>
+                            </td>
                             <td>@string.Format("{0:c}", item.Produto.Price)</td>
                             <td>@item.Qtd</td>
                             <td>
-                                <button class="btn btn-outline-primary btn-sm" @onclick="(() => AdicionarUnidade(item.Produto.Id))">+</button>
-                                <button class="btn btn-outline-danger btn-sm" @onclick="(() => RemoverUnidade(item.Produto.Id))">-</button>
+                                <button class="btn btn-outline-primary btn-sm"
+                                @onclick="(() => AdicionarUnidade(item.Produto.Id))">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm"
+                                @onclick="(() => RemoverUnidade(item.Produto.Id))">
+                                    <i class="fa-solid fa-minus"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm"
+                                @onclick="(() => RemoverItem(item.Produto.Id))">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Remover
+                                </button>
                             </td>
                         </tr>
                     }

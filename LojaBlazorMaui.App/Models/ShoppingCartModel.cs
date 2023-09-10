@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace LojaBlazorMaui.App.Models
+﻿namespace LojaBlazorMaui.App.Models
 {
     /// <summary>
     /// Modelo de dados do carrinho de compras
