@@ -46,8 +46,8 @@
                             <td>@string.Format("{0:c}", item.Produto.Price)</td>
                             <td>@item.Qtd</td>
                             <td>
-                                <button class="btn btn-outline-primary btn-sm">+</button>
-                                <button class="btn btn-outline-danger btn-sm">-</button>
+                                <button class="btn btn-outline-primary btn-sm" @onclick="(() => AdicionarUnidade(item.Produto.Id))">+</button>
+                                <button class="btn btn-outline-danger btn-sm" @onclick="(() => RemoverUnidade(item.Produto.Id))">-</button>
                             </td>
                         </tr>
                     }
